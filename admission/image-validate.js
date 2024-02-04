@@ -22,5 +22,6 @@ function previewImage(event) {
         };
     
         reader.readAsDataURL(image);
+        //test
     }
 }
