@@ -6,9 +6,9 @@ var username = document.cookie.replace(/(?:(?:^|.*;\s*)username\s*=\s*([^;]*).*$
 var user = document.cookie;
 
 // Check if the cookie exists
-if (username.trim() === "") {
+if (user.trim() === "") {
     console.log("Username: empty");
-    window.location.href = "../login/login.php";
+    //window.location.href = "../login/login.php";
 } else {
     console.log("Username:", username);
     document.write('Cookie available<br>'+username + "" + user);    
