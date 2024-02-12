@@ -1,10 +1,16 @@
 <?php
 session_start();
+include '../connection.php';
 if(!isset($_SESSION['valid'])){
     header("Location: ../index.html");
 }
 $auth = $_SESSION['auth'];
 $user = $_SESSION['valid'];
+//convert int to string for query
+$integer = $_SESSION['id'];
+$id = $integer . ""; 
+
+
 if(isset($_POST['logout'])){
     session_destroy();
     header("Location: ../index.html");
@@ -28,5 +34,23 @@ if(isset($_POST['logout'])){
             echo "<a href=''><button name='logout'>Add teacher</button></a>";
         }
     ?>
+    <div class="detail">
+        <?php
+            // Query to retrieve data from your table
+            $sql = "SELECT * FROM `student data` WHERE `Student ID` = '$id'"; // Adjust the query as needed
+            $result = mysqli_query($conn, $sql);
+
+            // Check if there is a result
+            if (mysqli_num_rows($result) > 0) {
+                // Fetch row as an associative array
+                $row = mysqli_fetch_assoc($result);
+
+                // Output all data from the row
+                foreach ($row as $key => $value) {
+                    echo "$key: $value <br>";
+                }
+            }
+        ?>
+    </div>
 </body>
 </html>

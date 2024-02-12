@@ -12,8 +12,9 @@ if(isset($_POST["submit"])){
     $row = mysqli_fetch_assoc($result);
     if(is_array($row) && !empty($row)){
         $_SESSION['valid'] = $row['username'];
+        $_SESSION['id'] = $row['Student ID'];
         $_SESSION['auth'] = $row['AuthID'];
-        header("Location: ../php/home.php");
+       header("Location: ../php/home.php");
     }else{
         header("Location: login.php?error=Invalid username or password!");//user not logged in
     }
