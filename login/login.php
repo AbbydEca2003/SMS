@@ -1,3 +1,26 @@
+<?php
+session_start();
+include '../connection.php';
+if(isset($_SESSION['valid'])){
+    header("Location: ../php/home.php");
+}
+
+if(isset($_POST["submit"])){
+    $user = $_POST['username'];//client username
+    $pass = $_POST['password'];//client password
+    $result = mysqli_query($conn, "SELECT * FROM `student login info` WHERE username = '$user' and password = '$pass'");
+    $row = mysqli_fetch_assoc($result);
+    if(is_array($row) && !empty($row)){
+        $_SESSION['valid'] = $row['username'];
+        $_SESSION['auth'] = $row['AuthID'];
+        header("Location: ../php/home.php");
+    }else{
+        header("Location: login.php?error=Invalid username or password!");//user not logged in
+    }
+
+
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +36,7 @@
 <body><div class="container">
     <div class="login">
     
-        <form action="login-verification.php" method="post" id="form">
+        <form action="" method="post" id="form">
             <img src="../assets/logo/logo.png" alt="logo" width="100%">
 
             <label for="username" class="h4">Username</label><br><p id="nameError">*Username not found</p>
@@ -31,11 +54,11 @@
                 echo "<p style='color:red;'>".$_GET['error']."</p>";
                 }
             ?>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" name = "submit">
         </form>
 
     </div>
 </div>
-<script src="login.js"></script>
+<!-- <script src="login.js"></script> -->
 </body>
 </html>
