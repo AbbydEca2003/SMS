@@ -34,7 +34,7 @@ textInputs.forEach(input => {
   input.style.borderRadius = '5px';
 });
     let error = {value: 0};//initially error is zero
-    e.preventDefault()
+    //e.preventDefault()
     studentError.style.display='block';
     if(addressCheck.checked){//check if both address are same or not
         streetP.value=streetT.value;
@@ -60,10 +60,9 @@ textInputs.forEach(input => {
     reg(bloodGroupType, bloodGroup, error);
 
     if(error.value > 0){
-        //e.preventDefault()
+        e.preventDefault()
         alert("problem");
     } 
-    console.log(error);
 })
 
 function CheckEmpty(error){

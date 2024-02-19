@@ -9,6 +9,7 @@ function previewImage(event) {
     const allowedtype = ['image/jpeg','image/png'];
     if(!allowedtype.includes(image.type)){
         alert("File not supported");
+        error.value++;
         document.getElementById('photo').reset();
         return;
     }else if(image.size > maxSize){

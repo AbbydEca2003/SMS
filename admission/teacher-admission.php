@@ -8,7 +8,7 @@ if(!isset($_SESSION['valid'])){
 
 $fName = $_POST['first-name'];
 if (!isset($fName)){//prevent page from loading if not posted
-    header("Location: ../pages/student-admission.html");
+    header("Location: ../pages/teacher-admission.html");
 }
 $mName = $_POST['middle-name'];
 $lName = $_POST['last-name'];
@@ -85,7 +85,7 @@ $sex = $_POST['sex'];
     }
 
     //add data to databse
-    $insert =   "INSERT INTO `student data`(`Student Image`, `Student ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('[value-1]','[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
+    $insert =   "INSERT INTO `teacher data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('[value-1]','[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
     if (mysqli_query($conn, $insert)) {
         echo "New record created successfully";
       } else {

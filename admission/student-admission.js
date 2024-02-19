@@ -52,6 +52,7 @@ textInputs.forEach(input => {
         countryP.value=countryT.value;
     }
     CheckEmpty(error);
+    previewImage(event);
     reg(oneWord, fName, error);
     reg(optionalWord, mName, error);
     reg(oneWord, lName, error);

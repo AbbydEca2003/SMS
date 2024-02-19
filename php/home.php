@@ -30,8 +30,8 @@ if(isset($_POST['logout'])){
     </form>
     <?php
         if($auth == 1){
-            echo "<a href=''><button name='logout'>Add student</button></a>";
-            echo "<a href=''><button name='logout'>Add teacher</button></a>";
+            echo "<a href='../pages/student-admission.html'><button name='addStudent'>Add student</button></a>";
+            echo "<a href='../pages/teacher-admission.html'><button name='addTeacher'>Add teacher</button></a>";
         }
     ?>
     <div class="detail">
