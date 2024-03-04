@@ -39,10 +39,11 @@ $fatherPhone = $_POST['father-phone'];
 $motherOccupation = $_POST['mother-occupation'];
 $motherPhone = $_POST['mother-phone'];
 $sex = $_POST['sex'];
+$faculty = $_POST['faculty'];
 
 
 //image srt
-    $target_dir = "uploads/";
+    $target_dir = "../Images/Student/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -78,20 +79,37 @@ $sex = $_POST['sex'];
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars( basename( $_FILES["photo"]["name"])). " has been uploaded.";
+
+            $image = basename( $_FILES["photo"]["name"]);
+            //add data to databse
+            $stID = 123;
+            $insert =   "INSERT INTO `{$faculty}_student_data`(`Student Image`, `Student ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('$image','$stID','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
+
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-
-    //add data to databse
-    $insert =   "INSERT INTO `student data`(`Student Image`, `Student ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('[value-1]','[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
+    
     if (mysqli_query($conn, $insert)) {
-        echo "New record created successfully";
+        //create login key for client
+        $create_account = "INSERT INTO `{$faculty}_student_login_info`(`Student ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','0')";
+        mysqli_query($conn, $create_account);
       } else {
         echo "Error: " . "<br>" . mysqli_error($conn);
       }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

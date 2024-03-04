@@ -15,9 +15,6 @@ $lName = $_POST['last-name'];
 $fNameN = $_POST['first-name-N'];
 $mNameN = $_POST['middle-name-N'];
 $lNameN = $_POST['last-name-N'];
-$fatherName = $_POST['father-name'];
-$motherName = $_POST['mother-name'];
-$guardianName = $_POST['guardian-name'];
 $nepaliDOB = $_POST['nepali-datepicker'];
 $englishDOB = $_POST['englis-datepicker'];
 $streetT = $_POST['street-T'];
@@ -33,44 +30,39 @@ $countryP = $_POST['country-P'];
 $religion = $_POST['religion'];
 $citizenID = $_POST['citizen-ID'];
 $bloodGroup = $_POST['blood-group'];
-$guardianPhone = $_POST['garduan-phone'];
-$fatherOccupation = $_POST['father-occupation'];
-$fatherPhone = $_POST['father-phone'];
-$motherOccupation = $_POST['mother-occupation'];
-$motherPhone = $_POST['mother-phone'];
 $sex = $_POST['sex'];
 
 
 //image srt
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["photo"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-    
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["photo"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
+$target_dir = "../Images/Teacher/";
+$target_file = $target_dir . basename($_FILES["photo"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    // Check file size
-    if ($_FILES["photo"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["photo"]["tmp_name"]);
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
         $uploadOk = 0;
     }
+}
 
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
+// Check file size
+if ($_FILES["photo"]["size"] > 500000) {
+    echo "Sorry, your file is too large.";
+    $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+    $uploadOk = 0;
+}
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
@@ -78,20 +70,27 @@ $sex = $_POST['sex'];
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars( basename( $_FILES["photo"]["name"])). " has been uploaded.";
+            $image = basename( $_FILES["photo"]["name"]);
+            //add data to databse
+            $stID = 123;
+            $insert =   "INSERT INTO `teacher data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('$image,'[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
 
     //add data to databse
-    $insert =   "INSERT INTO `teacher data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('[value-1]','[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
+    
     if (mysqli_query($conn, $insert)) {
-        echo "New record created successfully";
+        $create_account = "INSERT INTO `teacher_login`(`Student ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','0')";
+        mysqli_query($conn, $create_account);
       } else {
         echo "Error: " . "<br>" . mysqli_error($conn);
       }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

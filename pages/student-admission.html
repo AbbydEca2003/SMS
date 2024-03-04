@@ -20,10 +20,14 @@
             <form action="../admission/student-admission.php" method="post" id="student-admission" enctype="multipart/form-data">
             <h1 class="h2">विद्यार्थी भर्ना (Student Admission)</h1>
             <div class="h4" id="error">*कृपया सबै विवरणहरू राम्ररी भर्नुहोस् Please fill out all details properly</div>
+            
         <!-- name and dob side -->
+
        <div class="row">
         <div class="col">
+
              <!-- Name in english -->
+             
        <div class="row">
         <div class="col">
             <label for="first-name" >First name:</label><br>
@@ -38,7 +42,9 @@
             <input type="text" id="last-name" name="last-name">
         </div>
        </div>
+
        <!-- Name in nepali -->
+
        <div class="row">
         <div class="col">
             <label for="first-name">नाम:</label><br>
@@ -53,7 +59,9 @@
             <input type="text" id="last-name-N" name="last-name-N">
         </div>
        </div>
+
         <!-- parents name -->
+
         <div class="row">
             <div class="col">
                 <label for="father-name">Father's full name:</label><br>
@@ -68,7 +76,9 @@
                 <input type="text"  placeholder="Shrestha" id="guardian-name" name="guardian-name">
             </div>
            </div>
+
             <!-- personal details -->
+
         <div class="row">
             <div class="col">
                 <label for="nepali-datepicker">जन्म मिति(BS):</label><br>
@@ -86,7 +96,9 @@
             </div>
            </div>
         </div>  
+
         <!-- image side -->
+
         <div class="col">
             <label for="photo">Photo:</label><br>
             <img id="preview" src="#" alt="Preview Image" width="300px">
@@ -95,7 +107,9 @@
        </div>
            <hr>
            <h1 class="h2">अहिलेकाे ठेगाना (Present Address)</h1>
+
            <!-- address details -->
+
         <div class="row">
             <div class="col">
                 <label for="street">Street:</label><br>
@@ -120,7 +134,9 @@
            </div>
            <hr>
            <h1 class="h2">स्थाई ठेगाना (Permanent Address)</h1>
+
            <!-- Parmenent address details -->
+
            <div class="h6"><input type="checkbox" id="address-is-same"> Same as present address</div>
         <div class="row">
             <div class="col">
@@ -145,7 +161,9 @@
             </div>
            </div>
            <hr>
+
            <!-- Additional details -->
+
            <h1 class="h2">अतिरिक्त विवरणहरू (Additional Details)</h1>
             <div class="row">
                 <div class="col">
@@ -184,6 +202,10 @@
             </div>
             <div class="row">
                 <div class="col">
+                    <label for="faculty" >Faculty:</label><br>
+                    <label for="bca"><input type="radio" id="bca" value="BCA" name="faculty" checked> BCA</label>
+                    <label for="csit"><input type="radio" id="csit" value="CSIT" name="faculty"> CSIT</label>
+                    <label for="bit" ><input type="radio" id="bit" value="BIT" name="faculty"> BIT</label>
                     <input type="submit">
                 </div>
             </div>
