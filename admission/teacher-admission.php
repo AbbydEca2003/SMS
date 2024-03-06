@@ -72,8 +72,8 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
             $image = basename( $_FILES["photo"]["name"]);
             //add data to databse
-            $stID = 123;
-            $insert =   "INSERT INTO `teacher data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('$image,'[value-2]','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
+            $stID = 124;
+            $insert =   "INSERT INTO `teacher_data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('$image','$stID','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
@@ -82,7 +82,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     //add data to databse
     
     if (mysqli_query($conn, $insert)) {
-        $create_account = "INSERT INTO `teacher_login`(`Student ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','0')";
+        $create_account = "INSERT INTO `teacher_login`(`Teacher ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','1')";
         mysqli_query($conn, $create_account);
       } else {
         echo "Error: " . "<br>" . mysqli_error($conn);
@@ -109,13 +109,9 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
                     <?php
                         echo("<div class='row border border-2'><div class='col'>Name: $fName $mName $lName</div><div class='col'>Date of Birth(BS): $nepaliDOB</div><div class='col'>Date of Birth(AD): $englishDOB</div></div>");
                         echo("<div class='row border border-2'><div class='col'>नाम: $fNameN $mNameN $lNameN</div></div>");
-                        echo("<div class='row border border-2'><div class='col'>Father's Name: $fatherName</div><div class='col'>Phone No: $fatherPhone</div></div>");
-                        echo("<div class='row border border-2'><div class='col'>Mother's Name: $motherName</div><div class='col'>Phone No: $motherPhone</div></div>");
                         echo("<div class='row border border-2'><div class='col'>Present address: $streetT, $cityT, $provinceT, $countryT</div></div>");
                         echo("<div class='row border border-2'><div class='col'>Permanent address: $streetP, $cityP, $provinceP, $countryP</div></div>");
                         echo("<div class='row border border-2'><div class='col'>Religion: $religion</div><div class='col'>Citizen-ID: $citizenID</div><div class='col'>Blood Group: $bloodGroup</div><div class='col'>Sex: $sex</div></div>");
-                        echo("<div class='row border border-2'><div class='col'>Guardian Name: $guardianName</div><div class='col'>Guardian Phone: $guardianPhone</div></div>");
-                        echo("<div class='row border border-2'><div class='col'>Father's Occupation: $fatherOccupation</div><div class='col'>Mother's Occupation: $motherOccupation</div></div>");
                     ?>
                 </div>
                 <div class="col-md">

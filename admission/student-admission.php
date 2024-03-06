@@ -82,8 +82,8 @@ $faculty = $_POST['faculty'];
 
             $image = basename( $_FILES["photo"]["name"]);
             //add data to databse
-            $stID = 123;
-            $insert =   "INSERT INTO `{$faculty}_student_data`(`Student Image`, `Student ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('$image','$stID','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
+            $stID = 125;
+            $insert =   "INSERT INTO `student_data`(`Student Image`, `Student ID`, `faculty`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('$image','$stID',`$faculty`,'$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
 
         } else {
             echo "Sorry, there was an error uploading your file.";
@@ -92,7 +92,7 @@ $faculty = $_POST['faculty'];
     
     if (mysqli_query($conn, $insert)) {
         //create login key for client
-        $create_account = "INSERT INTO `{$faculty}_student_login_info`(`Student ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','0')";
+        $create_account = "INSERT INTO `student_login_info`(`Student ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','0')";
         mysqli_query($conn, $create_account);
       } else {
         echo "Error: " . "<br>" . mysqli_error($conn);

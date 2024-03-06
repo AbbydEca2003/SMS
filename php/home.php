@@ -37,7 +37,7 @@ if(isset($_POST['logout'])){
     <div class="detail">
         <?php
             // Query to retrieve data from your table
-            $sql = "SELECT * FROM `bca_student_data` WHERE `Student ID` = '$id'"; // Adjust the query as needed
+            $sql = "SELECT * FROM `student_data` WHERE `Student ID` = '$id'"; // Adjust the query as needed
             $result = mysqli_query($conn, $sql);
 
             // Check if there is a result

@@ -8,7 +8,7 @@ if(isset($_SESSION['valid'])){
 if(isset($_POST["submit"])){
     $user = $_POST['username'];//client username
     $pass = $_POST['password'];//client password
-    $result = mysqli_query($conn, "SELECT * FROM `student login info` WHERE username = '$user' and password = '$pass'");
+    $result = mysqli_query($conn, "SELECT * FROM `student_login_info` WHERE username = '$user' and password = '$pass'");
     $row = mysqli_fetch_assoc($result);
     if(is_array($row) && !empty($row)){
         $_SESSION['valid'] = $row['username'];
@@ -40,10 +40,10 @@ if(isset($_POST["submit"])){
         <form action="" method="post" id="form">
             <img src="../assets/logo/logo.png" alt="logo" width="100%">
 
-            <label for="username" class="h4">Username</label><br><p id="nameError">*Username not found</p>
+            <label for="username" class="h4">Username</label><br><p id="nameError">*Username field is empty</p>
             <input type="text" placeholder="username"  name="username" id="username"><br>
 
-            <label for="Paassword" class="h4">Password</label><br><p id="passError">*Password not found</p>
+            <label for="Paassword" class="h4">Password</label><br><p id="passError">*Password field is empty</p>
             <input type="password" placeholder="password"  name="password" id="password"><br>
 
             <input type="checkbox" id="staySigned">
@@ -60,6 +60,6 @@ if(isset($_POST["submit"])){
 
     </div>
 </div>
-<!-- <script src="login.js"></script> -->
+<script src="login.js"></script> 
 </body>
 </html>
