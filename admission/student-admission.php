@@ -8,7 +8,7 @@ if(!isset($_SESSION['valid'])){
 
 $fName = $_POST['first-name'];
 if (!isset($fName)){//prevent page from loading if not posted
-    header("Location: ../pages/student-admission.html");
+    header("Location: ../pages/student-admission.php");
 }
 $mName = $_POST['middle-name'];
 $lName = $_POST['last-name'];
@@ -83,7 +83,7 @@ $faculty = $_POST['faculty'];
             $image = basename( $_FILES["photo"]["name"]);
             //add data to databse
             $stID = 125;
-            $insert =   "INSERT INTO `student_data`(`Student Image`, `Student ID`, `faculty`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('$image','$stID',`$faculty`,'$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
+            $insert =   "INSERT INTO `student_data`(`Student Image`, `Student ID`, `faculty`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `Father's name`, `Mother's Name`, `Garduan's Name`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`, `Garduan Phone Number`, `Father's Occupation`, `Father's Phone Number`, `Mother's Occupation`, `Mother's Phone Number`) VALUES ('$image','$stID','$faculty','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$fatherName','$motherName','$guardianName','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup','$guardianPhone','$fatherOccupation','$fatherPhone','$motherOccupation','$motherPhone')";
 
         } else {
             echo "Sorry, there was an error uploading your file.";
