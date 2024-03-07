@@ -29,9 +29,24 @@ if(isset($_POST['logout'])){
     <a href=""><button name='logout'>Log Out</button></a>
     </form>
     <?php
+        //When you are admin
         if($auth == 1){
-            echo "<a href='../pages/student-admission.html'><button name='addStudent'>Add student</button></a>";
-            echo "<a href='../pages/teacher-admission.html'><button name='addTeacher'>Add teacher</button></a>";
+            echo("Youa are a admin<br>");
+            echo "<a href='../pages/student-admission.php'><button name='addStudent'>Add student</button></a>";
+            echo "<a href='../pages/teacher-admission.php'><button name='addTeacher'>Add teacher</button></a>";
+            echo "<a href=''><button name='addStudent'>Create Notice</button></a>";
+        }
+
+        if($auth == 0){
+            echo("Youa are a student<br>");
+            echo "<a href=''><button name=''>Notice</button></a>";
+            echo "<a href=''><button name='Notes'>Notes</button></a>";
+        }
+
+        if($auth == 2){
+            echo("Youa are a teacher<br>");
+            echo "<a href=''><button name=''>Attendence</button></a>";
+            echo "<a href=''><button name='Add Notes'></button></a>";
         }
     ?>
     <div class="detail">
@@ -47,7 +62,11 @@ if(isset($_POST['logout'])){
 
                 // Output all data from the row
                 foreach ($row as $key => $value) {
-                    echo "$key: $value <br>";
+                    if($key == "Student Image"){
+                        echo("<img src='../Images/$auth/$value' width ='200px'>");
+                    }else{
+                        echo "$key: $value <br>";
+                    } 
                 }
             }
         ?>

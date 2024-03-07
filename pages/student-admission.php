@@ -2,7 +2,7 @@
 session_start();
 include '../connection.php';
 
-if(!isset($_SESSION['valid'])){
+if($_SESSION['auth']!=1){
     header("Location: ../index.html");
 }
 ?>

@@ -2,7 +2,7 @@
 session_start();
 include '../connection.php';
 if(isset($_SESSION['valid'])){
-    header("Location: ../php/home.php");
+    header("Location: ../pages/home.php");
 }
 
 if(isset($_POST["submit"])){
@@ -14,7 +14,7 @@ if(isset($_POST["submit"])){
         $_SESSION['valid'] = $row['username'];
         $_SESSION['id'] = $row['Student ID'];
         $_SESSION['auth'] = $row['AuthID'];
-       header("Location: ../php/home.php");
+       header("Location: ../pages/home.php");
     }else{
         header("Location: login.php?error=Invalid username or password!");//user not logged in
     }
