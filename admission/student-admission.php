@@ -43,7 +43,7 @@ $faculty = $_POST['faculty'];
 
 
 //image srt
-    $target_dir = "../Images/Student/";
+    $target_dir = "../Images/0/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

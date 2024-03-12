@@ -34,7 +34,7 @@ $sex = $_POST['sex'];
 
 
 //image srt
-$target_dir = "../Images/Teacher/";
+$target_dir = "../Images/2/";
 $target_file = $target_dir . basename($_FILES["photo"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -72,8 +72,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
             $image = basename( $_FILES["photo"]["name"]);
             //add data to databse
-            $stID = 124;
-            $insert =   "INSERT INTO `teacher_data`(`Teacher Image`, `Teacher ID`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('$image','$stID','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
+            $insert =   "INSERT INTO `teacher_data`(`Teacher Image`, `First name`, `Middle name`, `Last name`, `first name(nepali)`, `middle name(nepali)`, `last name(nepali)`, `DOB (BS)`, `DOB (AD)`, `Sex`, `Street(T)`, `City(T)`, `District(T)`, `Province(T)`, `Country(T)`, `Street(P)`, `City(P)`, `District(P)`, `Province(P)`, `Country(P)`, `Religion`, `Citizen-ID`, `Blood Group`) VALUES ('$image','$fName','$mName','$lName','$fNameN','$mNameN','$lNameN','$nepaliDOB','$englishDOB','$sex','$streetT','$cityT','$districtT','$provinceT','$countryT','$streetP','$cityP','$districtP','$provinceP','$countryP','$religion','$citizenID','$bloodGroup')";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
@@ -82,7 +81,7 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
     //add data to databse
     
     if (mysqli_query($conn, $insert)) {
-        $create_account = "INSERT INTO `teacher_login`(`Teacher ID`, `username`, `password`, `AuthID`) VALUES ('$stID','$fName','$nepaliDOB','1')";
+        $create_account = "INSERT INTO `teacher_login`(`username`, `password`, `AuthID`) VALUES ('$fName','$nepaliDOB','2')";
         mysqli_query($conn, $create_account);
       } else {
         echo "Error: " . "<br>" . mysqli_error($conn);

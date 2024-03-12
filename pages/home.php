@@ -9,7 +9,7 @@ $user = $_SESSION['valid'];
 //convert int to string for query
 $integer = $_SESSION['id'];
 $id = $integer . ""; 
-
+echo($id);
 
 if(isset($_POST['logout'])){
     session_destroy();
@@ -22,6 +22,11 @@ if(isset($_POST['logout'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php if($auth == 1){echo($user.' SMS-ADMIN');}else{echo($user.' SMS');}?></title>
+    <style>
+        .detail{
+            border: 1px solid;
+        }
+    </style>
 </head>
 <body>
     <h1>Hello</h1>
@@ -46,13 +51,36 @@ if(isset($_POST['logout'])){
         if($auth == 2){
             echo("Youa are a teacher<br>");
             echo "<a href=''><button name=''>Attendence</button></a>";
-            echo "<a href=''><button name='Add Notes'></button></a>";
+            echo "<a href=''><button name='Add Notes'>Add Notes</button></a>";
+            echo("<div class='detail'><h1>Classes</h1>");
+
+            $categories = array();
+            $result= mysqli_query($conn, "SELECT * FROM `student_data` GROUP BY `faculty` ORDER BY `faculty`");
+            while($row = mysqli_fetch_assoc($result)){
+                $categories[$row['faculty']][] = $row['First name'];
+            }
+            
+            // any type of outout you like
+            foreach($categories as $key => $category){
+                echo("<button>$key</button>");
+                foreach($category as $item){ 
+                    //echo $item.'<br/>';
+                }
+            }
+            
+            echo("</div>");
+
         }
     ?>
     <div class="detail">
         <?php
             // Query to retrieve data from your table
-            $sql = "SELECT * FROM `student_data` WHERE `Student ID` = '$id'"; // Adjust the query as needed
+            if($auth==0){
+                $sql = "SELECT * FROM `student_data` WHERE `Student ID` = '$id'"; // Adjust the query as needed student
+            }else if($auth==2){
+                $sql = "SELECT * FROM `teacher_data` WHERE `Teacher ID` = 0"; // Adjust the query as needed teacher
+            }
+            
             $result = mysqli_query($conn, $sql);
 
             // Check if there is a result
@@ -62,7 +90,7 @@ if(isset($_POST['logout'])){
 
                 // Output all data from the row
                 foreach ($row as $key => $value) {
-                    if($key == "Student Image"){
+                    if($key == "Student Image" or $key == "Teacher Image"){
                         echo("<img src='../Images/$auth/$value' width ='200px'>");
                     }else{
                         echo "$key: $value <br>";
