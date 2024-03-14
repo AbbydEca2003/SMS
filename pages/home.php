@@ -2,7 +2,7 @@
 session_start();
 include '../connection.php';
 if(!isset($_SESSION['valid'])){
-    header("Location: ../index.html");
+    header("Location: ../index.php");
 }
 $auth = $_SESSION['auth'];
 $user = $_SESSION['valid'];

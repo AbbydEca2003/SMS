@@ -3,7 +3,7 @@ session_start();
 include '../connection.php';
 
 if($_SESSION['auth']!=1){
-    header("Location: ../index.html");
+    header("Location: ../index.php");
 }
 ?>
 <html lang="en">

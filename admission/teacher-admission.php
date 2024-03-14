@@ -3,7 +3,7 @@ session_start();
 include '../connection.php';
 
 if(!isset($_SESSION['valid'])){
-    header("Location: ../index.html");
+    header("Location: ../index.php");
 }
 
 $fName = $_POST['first-name'];

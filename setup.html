@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Installer</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 20px;
+        }
+        .ins{
+            margin: 20px;
+            padding: 1%;
+            width: 500px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 4px 1px rgb(128, 128, 128);
+        }
+        input[type=text], input[type=password]{
+            width: 100%;
+        }
+        input[type=submit]{
+            background-color: purple;
+            border: none;
+            padding: 5px 15px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="ins">
+        <img src="assets/logo/logo.png" alt="SMS" width="300px">
+        <h3>Installer</h3>
+        <form action="installer.php" method="post">
+            Database name: <input type="text" placeholder="sms" required name="db"><br>
+            Server name: <input type="text" placeholder="localhost" required name = "server"><br>
+            Username: <input type="text"  placeholder="root" required name = "user"><br>
+            Password: <input type="password" name = "pass" name="pass"><br><hr>
+            Administrator's Username: <input type="text" placeholder="admin" required name = "admin"><br>
+            Password: <input type="password" placeholder="admin" required name = "ad_pass"><br><br>
+            <input type="submit" value="Install"  name="create_sms">
+        </form>
+    </div>
+</body>
+</html>
