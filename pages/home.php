@@ -9,11 +9,10 @@ $user = $_SESSION['valid'];
 //convert int to string for query
 $integer = $_SESSION['id'];
 $id = $integer . ""; 
-echo($id);
 
 if(isset($_POST['logout'])){
     session_destroy();
-    header("Location: ../index.html");
+    header("Location: ../index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -77,8 +76,8 @@ if(isset($_POST['logout'])){
             // Query to retrieve data from your table
             if($auth==0){
                 $sql = "SELECT * FROM `student_data` WHERE `Student ID` = '$id'"; // Adjust the query as needed student
-            }else if($auth==2){
-                $sql = "SELECT * FROM `teacher_data` WHERE `Teacher ID` = 0"; // Adjust the query as needed teacher
+            }else if($auth==2 || $auth == 1){
+                $sql = "SELECT * FROM `teacher_data` WHERE `Teacher ID` = '$id'"; // Adjust the query as needed teacher
             }
             
             $result = mysqli_query($conn, $sql);
@@ -91,7 +90,7 @@ if(isset($_POST['logout'])){
                 // Output all data from the row
                 foreach ($row as $key => $value) {
                     if($key == "Student Image" or $key == "Teacher Image"){
-                        echo("<img src='../Images/$auth/$value' width ='200px'>");
+                        echo("<img src='../Images/$auth/$value' width ='200px'><br>");
                     }else{
                         echo "$key: $value <br>";
                     } 
