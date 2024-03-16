@@ -14,7 +14,7 @@ if(isset($_POST['create_sms'])){
     fwrite($myfile, $txt);
     fclose($myfile);
 
-    include 'connect.php';
+    include 'connection.php';
     $create_student_table = mysqli_query($conn,"CREATE TABLE `student_data` (
         `Student Image` varchar(11) NOT NULL,
         `Student ID` varchar(20) NOT NULL primary key,

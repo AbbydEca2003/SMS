@@ -1,5 +1,5 @@
 <?php
-if(!file_exists('connect.php')){
+if(!file_exists('connection.php')){
     header("Location: setup.html");
 }
 ?>
