@@ -42,7 +42,7 @@ if(isset($_POST['create_sms'])){
         `Province(P)` varchar(20) NOT NULL,
         `Country(P)` varchar(20) NOT NULL DEFAULT '''Nepal''',
         `Religion` varchar(10) NOT NULL,
-        `Citizen-ID` int(20),
+        `Citizen-ID` varchar(20),
         `Blood Group` varchar(3) NOT NULL,
         `Garduan Phone Number` varchar(20) NOT NULL,
         `Father's Occupation` varchar(20),
