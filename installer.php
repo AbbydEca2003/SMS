@@ -57,7 +57,7 @@ if(isset($_POST['create_sms'])){
         `AuthID` int(5) NOT NULL
       )");
     $create_teacher_table = mysqli_query($conn, "CREATE TABLE `teacher_data` (
-        `Teacher Image` varchar(30) NOT NULL,
+        `Teacher Image` varchar(30),
         `Teacher ID` int(10) NOT NULL primary key AUTO_INCREMENT,
         `First name` varchar(20) NOT NULL,
         `Middle name` varchar(20) NOT NULL,
